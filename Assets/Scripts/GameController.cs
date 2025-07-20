@@ -122,9 +122,10 @@ public class GameController : MonoBehaviour
 
 
             CheckGameFinished();
-            
-            }
-            else
+            FindObjectOfType<SoundManager>().MatchSound();
+
+        }
+        else
             {
                 yield return new WaitForSeconds(.5f);
             /*btns[firstGuessIndex].image.sprite = bgImg;
@@ -132,6 +133,7 @@ public class GameController : MonoBehaviour
 
             StartCoroutine(FlipCard(btns[firstGuessIndex], bgImg));
             StartCoroutine(FlipCard(btns[secondGuessIndex], bgImg));
+            FindObjectOfType<SoundManager>().NoMatchSound();
 
         }
         yield return new WaitForSeconds(.5f);
@@ -147,6 +149,7 @@ public class GameController : MonoBehaviour
         if(match == gameCards.Count / 2  )
         {
             Debug.Log("game finished");
+            OpenpageFunctions.instance.GameOver();
         }
     }
     void Shuffle(List<Sprite> list)

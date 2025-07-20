@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class OpenpageFunctions : MonoBehaviour
 {
+    public static OpenpageFunctions instance;
     public Button easy;
     public Button medium;
     public Button hard;
@@ -15,16 +17,24 @@ public class OpenpageFunctions : MonoBehaviour
 
     public GameObject openpanel;
     public GameObject gameOpen;
+    public GameObject gameOver;
+    public TextMeshProUGUI gametext;
+
     public Color newColor = Color.green;
     public Color defaultColor = Color.white;
-
+    private void Awake()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        gameOpen.SetActive(false);//false
+        gameOpen.SetActive(false);
+        gameOver.SetActive(false);
         easy.onClick.AddListener(ChangeColorEasy);
         medium.onClick.AddListener(ChangeColorMedium);
         hard.onClick.AddListener(ChangeColorHard);
+       
 
     }
 
@@ -58,6 +68,20 @@ public class OpenpageFunctions : MonoBehaviour
     public void GameStart()
     {
         openpanel.SetActive(false);
-        gameOpen.SetActive(true);
+        gameOpen.SetActive(true); 
+        gameOver.SetActive(false);
+    }
+    public void GameOver()
+    {
+        openpanel.SetActive(false);
+        gameOpen.SetActive(false);
+        gameOver.SetActive(true);
+    }
+    public void Replay()
+    {
+        openpanel.SetActive(false);
+        gameOpen.SetActive(false);
+        gameOver.SetActive(true);
+        gametext.text = "You Win";
     }
 }
