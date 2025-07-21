@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour
     private int firstGuessIndex, secondGuessIndex;
 
     private string firstGuessCard, secondGuessCard;
-    private void Awake()
+     void Awake()
     {
         card = Resources.LoadAll<Sprite>("Sprites/img");
     }
@@ -31,8 +31,9 @@ public class GameController : MonoBehaviour
     void Start()
     {
         GetButtons();
-        AddListeners();
         AddGamecards();
+        AddListeners();
+       
         Shuffle(gameCards);
        
     }
